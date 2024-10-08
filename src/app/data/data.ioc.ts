@@ -13,6 +13,7 @@ import { GroupInteractor } from "./interactors/implementations/group/group.inter
 import { RepoRepository } from "./data-sources/remote/repo/repo.repository";
 import { GroupRepository } from "./data-sources/remote/group/group.repository";
 import { Apollo } from "apollo-angular";
+import { GetOneGroupUsecase } from "../domain/usecases/group-usecases/get-one-group.usecase";
 
 export const DATA_REPO_IOC: Provider[] = [
   {
@@ -29,9 +30,9 @@ export const DATA_REPO_IOC: Provider[] = [
     useFactory: (http: HttpClient, apollo: Apollo) => new RepoRepository(http, apollo)
   },
   {
-    deps: [HttpClient, Apollo],
+    deps: [Apollo],
     provide: GroupRepository,
-    useFactory: (http: HttpClient, apollo: Apollo) => new GroupRepository(http, apollo)
+    useFactory: (apollo: Apollo) => new GroupRepository(apollo)
   },
   {
     deps: [RepoRepository],
@@ -42,5 +43,10 @@ export const DATA_REPO_IOC: Provider[] = [
     deps: [GroupRepository],
     provide: GetManyGroupUsecase,
     useFactory: (groupRepository: GroupRepository) => new GetManyGroupUsecase(groupRepository)
+  },
+  {
+    deps: [GroupRepository],
+    provide: GetOneGroupUsecase,
+    useFactory: (groupRepository: GroupRepository) => new GetOneGroupUsecase(groupRepository)
   }
 ]

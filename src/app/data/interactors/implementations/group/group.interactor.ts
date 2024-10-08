@@ -1,18 +1,23 @@
 import { Observable } from "rxjs";
 import { GroupRequest } from "../../../requests/project.request";
 import { IGroupInteractor } from "../../contracts/igroup.interactor";
+
 import { GetManyGroupUsecase } from "../../../../domain/usecases/group-usecases/get-many-group.usecase";
+import { GetOneGroupUsecase } from "../../../../domain/usecases/group-usecases/get-one-group.usecase";
+
 import { NoParam } from "../../../../core/params/no-param.paylod";
 import { Injectable } from "@angular/core";
+import { Param } from "../../../../core/params/param.payload";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class GroupInteractor extends IGroupInteractor {
-
-  constructor(
-    private getManyGroupUsecase: GetManyGroupUsecase
-) {
+  constructor(private getManyGroupUsecase: GetManyGroupUsecase, private getOneGroupUsecase: GetOneGroupUsecase) { 
     super();
-}
+  }
+
+  override getOne(id?: string): Observable<GroupRequest> {
+    return this.getOneGroupUsecase.execute(new Param("3"));
+  }
 
   public getMany(): Observable<GroupRequest[]> {
     return this.getManyGroupUsecase.execute(new NoParam());

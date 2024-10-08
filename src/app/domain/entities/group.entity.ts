@@ -7,6 +7,6 @@ export class GroupEntity {
   path?: string;
   fullpath?: string;
   members?: number[];
-  repositories?: RepoEntity[];
-  subGroups?: GroupEntity[];
+  repos?: RepoEntity[];
+  groups?: GroupEntity[];
 }

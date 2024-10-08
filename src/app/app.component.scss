@@ -1,0 +1,12 @@
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
+
+.adaptive-text-color, .adaptive-text-color a{
+    @include respond-to(large-desktop) {
+        color: $text-color-large;
+    }
+
+    @include respond-to(desktop) {
+        color: $text-color-small;
+    }
+}

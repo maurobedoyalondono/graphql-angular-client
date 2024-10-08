@@ -4,6 +4,6 @@ import { GroupEntity } from '../entities';
 
 @Injectable({ providedIn: 'root' })
 export abstract class IGroupRepository {
-
     abstract getAll(): Observable<GroupEntity[]>;
+    abstract getOne(id?: string): Observable<GroupEntity>;
 }

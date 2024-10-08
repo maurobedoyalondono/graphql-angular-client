@@ -1,0 +1,7 @@
+@import './base/variables';
+@import './base/mixins';
+
+body {
+    font-family: $font-primary;
+    color: $text-color;
+}

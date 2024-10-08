@@ -6,26 +6,24 @@ import { IRepoInteractor } from './data/interactors/contracts/irepo.interactor';
 import { CommonModule } from '@angular/common';
 import { IGroupInteractor } from './data/interactors/contracts/igroup.interactor';
 import { GroupRequest } from './data/requests/project.request';
+import { FTVaultHeaderComponent } from './presenter/components/layouts/ftvault-header/ftvault-header.component';
+import { FTVaultLeftSideBarComponent } from './presenter/components/layouts/ftvault-left-side-bar/ftvault-left-side-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, FTVaultHeaderComponent, FTVaultLeftSideBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'FTVault 2.0 App';
 
-  public repos$?: Observable<RepoRequest[]>;
-  public groups$?: Observable<GroupRequest[]>;
-
-  constructor(private repoInteractor: IRepoInteractor, private groupInteractor: IGroupInteractor) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-    this.repos$ = this.repoInteractor.getMany();
-    this.groups$ = this.groupInteractor.getMany();
+
   }
 }
